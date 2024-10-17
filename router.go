@@ -19,13 +19,13 @@ func New() Router {
 }
 
 // GET registers a route at the provided path that responds to GET requests.
-func (router Router) GET(path string, h http.Handler) {
-	router.mux.Handle(fmt.Sprintf("GET %s", path), h)
+func (router Router) GET(path string, h http.HandlerFunc) {
+	router.mux.HandleFunc(fmt.Sprintf("GET %s", path), h)
 }
 
 // POST registers a route at the provided path that responds to POST requests.
-func (router Router) POST(path string, h http.Handler) {
-	router.mux.Handle(fmt.Sprintf("POST %s", path), h)
+func (router Router) POST(path string, h http.HandlerFunc) {
+	router.mux.HandleFunc(fmt.Sprintf("POST %s", path), h)
 }
 
 // ServeHTTP implements the http.Handler interface.
